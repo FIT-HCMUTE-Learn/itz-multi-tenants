@@ -1,0 +1,35 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.log
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# project ignore
+source/com-multi-tenants-api/application-production.properties
+source/com-multi-tenants-api/deploy_ec2.sh
+source/com-multi-tenants-api/execute_jar_on_vm.sh
+source/com-multi-tenants-api/target
+source/com-multi-tenants-api/logs
+source/com-multi-tenants-api/.idea
+source/com-multi-tenants-api/*.iml
