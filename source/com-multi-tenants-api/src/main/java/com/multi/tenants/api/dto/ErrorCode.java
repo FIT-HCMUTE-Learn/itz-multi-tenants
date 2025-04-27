@@ -42,6 +42,11 @@ public class ErrorCode {
     public static final String SETTING_ERROR_EXISTED_GROUP_NAME_AND_KEY_NAME = "ERROR-SETTING-0001";
 
     /**
+     * Starting error code TENANT
+     * */
+    public static final String TENANT_ERROR_NOT_FOUND = "ERROR-TENANT-0000";
+
+    /**
      * Starting error code DATABASE_ERROR
      *
      */
