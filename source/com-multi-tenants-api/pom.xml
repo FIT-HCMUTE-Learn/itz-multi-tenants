@@ -257,6 +257,11 @@
             <artifactId>liquibase-core</artifactId>
             <version>${liquibase.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -320,7 +325,7 @@
                     <diffChangeLogFile>${basedir}/src/main/resources/liquibase/dev/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                     <outputChangeLogFile>${basedir}/src/main/resources/liquibase/dev/db.changelog-1.0.0.xml</outputChangeLogFile>
                     <driver>com.mysql.cj.jdbc.Driver</driver>
-                    <url>jdbc:mysql://localhost:3306/db_tenants_master</url>
+                    <url>jdbc:mysql://localhost:3306/db_lms</url>
                     <username>root</username>
                     <password>123456</password>
                     <referenceUrl>hibernate:spring:com.multi.tenants.api.model,com.multi.tenants.api.repository?dialect=org.hibernate.dialect.MySQL5InnoDBDialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
