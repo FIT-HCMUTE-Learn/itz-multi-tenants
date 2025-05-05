@@ -26,4 +26,7 @@ public class Blog extends Auditable<String> {
 
     @Column(name = "content", columnDefinition = "TEXT")
     private String content;
+
+    @Column(name = "author", nullable = false)
+    private String author;
 }
