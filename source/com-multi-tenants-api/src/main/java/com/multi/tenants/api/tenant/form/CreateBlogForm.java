@@ -16,4 +16,8 @@ public class CreateBlogForm {
     @ApiModelProperty(name = "content", required = true)
     @NotBlank(message = "content cannot be null or empty")
     private String content;
+
+    @ApiModelProperty(name = "author", required = true)
+    @NotBlank(message = "author cannot be null or empty")
+    private String author;
 }

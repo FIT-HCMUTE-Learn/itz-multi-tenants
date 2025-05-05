@@ -45,6 +45,7 @@ public class ErrorCode {
      * Starting error code TENANT
      * */
     public static final String TENANT_ERROR_NOT_FOUND = "ERROR-TENANT-0000";
+    public static final String TENANT_ERROR_EXISTED = "ERROR-TENANT-0001";
 
     /**
      * Starting error code DATABASE_ERROR

@@ -14,15 +14,18 @@ import java.util.List;
 public interface BlogMapper {
     @Mapping(source = "title", target = "title")
     @Mapping(source = "content", target = "content")
+    @Mapping(source = "author", target = "author")
     Blog fromCreateBlogFormToEntity(CreateBlogForm createBlogForm);
 
     @Mapping(source = "title", target = "title")
     @Mapping(source = "content", target = "content")
+    @Mapping(source = "author", target = "author")
     void updateFromUpdateBlogForm(@MappingTarget Blog blog, UpdateBlogForm updateBlogForm);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "title", target = "title")
     @Mapping(source = "content", target = "content")
+    @Mapping(source = "author", target = "author")
     @BeanMapping(ignoreByDefault = true)
     @Named("fromEntityToBlogDto")
     BlogDto fromEntityToBlogDto(Blog blog);

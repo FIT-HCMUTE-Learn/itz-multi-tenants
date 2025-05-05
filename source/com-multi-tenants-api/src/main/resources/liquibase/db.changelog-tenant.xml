@@ -7,4 +7,5 @@
 
     <include file="tenant/db.changelog-1.0.0.xml" relativeToChangelogFile="true"/>
     <include file="tenant/20250428053911_changelog.xml" relativeToChangelogFile="true"/>
+    <include file="tenant/20250505074109_changelog.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

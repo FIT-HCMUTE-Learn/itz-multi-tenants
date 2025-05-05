@@ -29,4 +29,7 @@ public class Blog extends Auditable<String> {
 
     @Column(name = "author", nullable = false)
     private String author;
+
+    @Column(name = "likes")
+    private Integer likes;
 }

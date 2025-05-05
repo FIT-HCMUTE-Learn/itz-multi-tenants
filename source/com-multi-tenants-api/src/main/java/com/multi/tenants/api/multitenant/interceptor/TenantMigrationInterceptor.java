@@ -25,7 +25,8 @@ public class TenantMigrationInterceptor implements HandlerInterceptor {
                 requestURI.startsWith("/webjars") ||
                 requestURI.startsWith("/actuator") ||
                 requestURI.startsWith("/api/token") ||
-                requestURI.startsWith("/error")) {
+                requestURI.startsWith("/error") ||
+                requestURI.startsWith("/v1/tenant/create")) {
             return true;
         }
 
