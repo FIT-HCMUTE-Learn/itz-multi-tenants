@@ -20,6 +20,11 @@ public class ITzBaseConstant {
     public static final String SETTING_DATA_TYPE_LONG = "long";
     public static final String SETTING_DATA_TYPE_DOUBLE = "double";
 
+    public static final String MIGRATION_STATUS_PENDING = "PENDING";
+    public static final String MIGRATION_STATUS_IN_PROGRESS = "IN_PROGRESS";
+    public static final String MIGRATION_STATUS_COMPLETED = "COMPLETED";
+    public static final String MIGRATION_STATUS_FAILED = "FAILED";
+
     public static final Integer MAX_ATTEMPT_FORGET_PWD = 5;
     public static final Integer MAX_ATTEMPT_LOGIN = 5;
     public static final int MAX_TIME_FORGET_PWD = 5 * 60 * 1000; //5 minutes

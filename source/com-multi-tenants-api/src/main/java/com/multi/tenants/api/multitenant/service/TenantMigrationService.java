@@ -1,5 +1,6 @@
 package com.multi.tenants.api.multitenant.service;
 
+import com.multi.tenants.api.constant.ITzBaseConstant;
 import com.multi.tenants.api.model.MigrationStatus;
 import com.multi.tenants.api.model.Tenant;
 import com.multi.tenants.api.repository.MigrationStatusRepository;
@@ -39,6 +40,9 @@ public class TenantMigrationService {
 
     @Value("${encryption.salt}")
     private String salt;
+
+    @Value("${multitenancy.tenant.liquibase.changelog}")
+    private String tenantChangelog;
 
     @Autowired
     public TenantMigrationService(EncryptionService encryptionService,
@@ -165,7 +169,7 @@ public class TenantMigrationService {
             // Create new migration status record
             migrationStatus = new MigrationStatus();
             migrationStatus.setTenant(tenant);
-            migrationStatus.setMigrationStatus("IN_PROGRESS");
+            migrationStatus.setMigrationStatus(ITzBaseConstant.MIGRATION_STATUS_IN_PROGRESS);
             migrationStatus.setStartTime(new Date());
             migrationStatus.setIsSuccess(false);
             migrationStatus = migrationStatusRepository.save(migrationStatus);
@@ -174,7 +178,7 @@ public class TenantMigrationService {
             String changelogVersion = migrateTenantSchema(tenant, migrationStatus);
 
             // Update status to COMPLETED
-            migrationStatus.setMigrationStatus("COMPLETED");
+            migrationStatus.setMigrationStatus(ITzBaseConstant.MIGRATION_STATUS_COMPLETED);
             migrationStatus.setIsSuccess(true);
             migrationStatus.setEndTime(new Date());
             migrationStatus.setErrorMessage(null);
@@ -189,7 +193,7 @@ public class TenantMigrationService {
 
             if (migrationStatus != null) {
                 // Update status to FAILED
-                migrationStatus.setMigrationStatus("FAILED");
+                migrationStatus.setMigrationStatus(ITzBaseConstant.MIGRATION_STATUS_FAILED);
                 migrationStatus.setIsSuccess(false);
                 migrationStatus.setEndTime(new Date());
                 migrationStatus.setErrorMessage(e.getMessage());
@@ -228,7 +232,7 @@ public class TenantMigrationService {
                     .findCorrectDatabaseImplementation(new JdbcConnection(connection));
 
             Liquibase liquibase = new Liquibase(
-                    "liquibase/db.changelog-tenant.xml",
+                    tenantChangelog,
                     new ClassLoaderResourceAccessor(),
                     database
             );
