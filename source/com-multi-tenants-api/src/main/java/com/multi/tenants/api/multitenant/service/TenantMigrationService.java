@@ -108,18 +108,18 @@ public class TenantMigrationService {
 
         MigrationStatus migrationStatus = null;
         try {
-            // Create new migration status record
-            migrationStatus = new MigrationStatus();
-            migrationStatus.setTenantId(tenantId);
-            migrationStatus.setMigrationStatus("IN_PROGRESS");
-            migrationStatus.setStartTime(new Date());
-            migrationStatus.setIsSuccess(false);
-            migrationStatus = migrationStatusRepository.save(migrationStatus);
-
             // Get tenant details
             Tenant tenant = tenantRepository.findById(tenantId).orElseThrow(
                     () -> new RuntimeException("Tenant not found: " + tenantId)
             );
+
+            // Create new migration status record
+            migrationStatus = new MigrationStatus();
+            migrationStatus.setTenant(tenant);
+            migrationStatus.setMigrationStatus("IN_PROGRESS");
+            migrationStatus.setStartTime(new Date());
+            migrationStatus.setIsSuccess(false);
+            migrationStatus = migrationStatusRepository.save(migrationStatus);
 
             // Perform migration
             migrateTenantSchema(tenant, migrationStatus);

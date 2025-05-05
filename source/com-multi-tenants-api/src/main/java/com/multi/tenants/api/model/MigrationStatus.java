@@ -21,8 +21,9 @@ public class MigrationStatus extends Auditable<String> {
     @GeneratedValue(generator = "idGenerator")
     private Long id;
 
-    @Column(nullable = false)
-    private String tenantId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tenant_id", referencedColumnName = "tenant_id")
+    private Tenant tenant;
 
     @Column(name = "migration_status", nullable = false)
     private String migrationStatus; // PENDING, IN_PROGRESS, COMPLETED, FAILED

@@ -322,8 +322,8 @@
                 <version>${liquibase.version}</version>
                 <configuration>
                     <changeLogFile>${liquibase.changeLogFile}</changeLogFile>
-                    <diffChangeLogFile>${basedir}/src/main/resources/liquibase/dev/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
-                    <outputChangeLogFile>${basedir}/src/main/resources/liquibase/dev/db.changelog-1.0.0.xml</outputChangeLogFile>
+                    <diffChangeLogFile>${basedir}/src/main/resources/liquibase/master/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
+                    <outputChangeLogFile>${basedir}/src/main/resources/liquibase/master/db.changelog-1.0.0.xml</outputChangeLogFile>
                     <driver>com.mysql.cj.jdbc.Driver</driver>
                     <url>jdbc:mysql://localhost:3306/db_lms</url>
                     <username>root</username>
