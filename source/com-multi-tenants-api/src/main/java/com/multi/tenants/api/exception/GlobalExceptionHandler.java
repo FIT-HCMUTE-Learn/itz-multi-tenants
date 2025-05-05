@@ -131,6 +131,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiMessageDto, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler({TenantMigrationException.class})
+    public ResponseEntity<ApiMessageDto<String>> tenantMigrationException(TenantMigrationException ex) {
+        ApiMessageDto<String> apiMessageDto = new ApiMessageDto<>();
+        apiMessageDto.setResult(false);
+        apiMessageDto.setCode(ex.getCode() != null ? ex.getCode() : "ERROR-TENANT-MIGRATION");
+        apiMessageDto.setMessage("Tenant migration failed: " + ex.getMessage() + " (tenant: " + ex.getTenantId() + ")");
+        return new ResponseEntity<>(apiMessageDto, HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
     @ExceptionHandler({TokenExceptionHandler.class})
     public ResponseEntity<ApiMessageDto<String>> invalidTokenHandler(TokenExceptionHandler ex, WebRequest request) {
         ApiMessageDto<String> apiMessageDto = new ApiMessageDto<>();
