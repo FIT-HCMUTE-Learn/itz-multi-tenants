@@ -29,7 +29,7 @@ public class TenantController extends ABasicController {
     @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
     public ApiMessageDto<TenantAdminDto> createTenant(@Valid @RequestBody CreateTenantAdminForm form) {
         if (tenantRepository.existsByTenantId(form.getTenantId())) {
-            throw new BadRequestException(ErrorCode.TENANT_ERROR_NOT_FOUND);
+            throw new BadRequestException(ErrorCode.TENANT_ERROR_EXISTED);
         }
 
         Tenant tenant = tenantManagementService.createTenant(form.getTenantId(), form.getDb(), form.getPassword());

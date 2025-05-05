@@ -15,4 +15,7 @@ public class BlogDto {
 
     @ApiModelProperty(name = "content")
     private String content;
+
+    @ApiModelProperty(name = "author")
+    private String author;
 }
