@@ -34,9 +34,10 @@ import java.util.Map;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     private static final String BAD_REQUEST = "BAD REQUEST";
     final ObjectMapper mapper = new ObjectMapper();
+
     @ExceptionHandler({NotFoundException.class})
     public ResponseEntity<ApiMessageDto<String>> globalExceptionHandler(NotFoundException ex) {
-        log.error(""+ex.getMessage(), ex);
+        log.error("" + ex.getMessage(), ex);
         ApiMessageDto<String> apiMessageDto = new ApiMessageDto<>();
         apiMessageDto.setCode(ex.getCode());
         apiMessageDto.setResult(false);
@@ -62,27 +63,27 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiMessageDto, HttpStatus.FORBIDDEN);
     }
 
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(Exception.class)
-	@ResponseBody
-	public ApiMessageDto<List<ErrorForm>> exceptionHandler(Exception ex) {
-        log.error(""+ex.getMessage(), ex);
-		ApiMessageDto<List<ErrorForm>> apiMessageDto = new ApiMessageDto<>();
-		apiMessageDto.setCode("ERROR");
-		apiMessageDto.setResult(false);
-		if(ex instanceof MyBindingException){
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    public ApiMessageDto<List<ErrorForm>> exceptionHandler(Exception ex) {
+        log.error("" + ex.getMessage(), ex);
+        ApiMessageDto<List<ErrorForm>> apiMessageDto = new ApiMessageDto<>();
+        apiMessageDto.setCode("ERROR");
+        apiMessageDto.setResult(false);
+        if (ex instanceof MyBindingException) {
             try {
                 List<ErrorForm> errorForms = Arrays.asList(mapper.readValue(ex.getMessage(), ErrorForm[].class));
                 apiMessageDto.setData(errorForms);
                 apiMessageDto.setMessage("Invalid form");
-            }catch (Exception e){
+            } catch (Exception e) {
                 log.error(e.getMessage());
             }
-        }else{
-            apiMessageDto.setMessage("[Ex2]: "+ex.getMessage());
+        } else {
+            apiMessageDto.setMessage("[Ex2]: " + ex.getMessage());
         }
-		return apiMessageDto;
-	}
+        return apiMessageDto;
+    }
 
     @ExceptionHandler({UnauthorizationException.class})
     public ResponseEntity<ApiMessageDto<String>> notAllow(UnauthorizationException ex) {
@@ -112,7 +113,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity(new ApiResponse(HttpStatus.BAD_REQUEST, BAD_REQUEST, errors), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({ DataAccessException.class})
+    @ExceptionHandler({DataAccessException.class})
     public ResponseEntity<ApiMessageDto<String>> databaseError(DataAccessException ex) {
         ApiMessageDto<String> apiMessageDto = new ApiMessageDto<>();
         apiMessageDto.setResult(false);
@@ -121,6 +122,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiMessageDto, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler({TenantCreationException.class})
+    public ResponseEntity<ApiMessageDto<String>> tenantCreationException(TenantCreationException ex) {
+        ApiMessageDto<String> apiMessageDto = new ApiMessageDto<>();
+        apiMessageDto.setResult(false);
+        apiMessageDto.setMessage("Tenant Exception");
+        apiMessageDto.setCode(ex.getCode() != null ? ex.getCode() : null);
+        return new ResponseEntity<>(apiMessageDto, HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler({TokenExceptionHandler.class})
     public ResponseEntity<ApiMessageDto<String>> invalidTokenHandler(TokenExceptionHandler ex, WebRequest request) {

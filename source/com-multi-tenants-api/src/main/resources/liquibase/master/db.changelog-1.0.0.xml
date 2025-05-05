@@ -1,9 +1,9 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
     <changeSet author="Authentication" id="1744686484537-1">
-        <createTable tableName="db_tenants_master_account">
+        <createTable tableName="db_lms_account">
             <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="db_tenants_master_accountPK"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="db_lms_accountPK"/>
             </column>
             <column name="attempt_forget_pwd" type="INT"/>
             <column name="attempt_login" type="INT"/>
@@ -39,9 +39,9 @@
         </createTable>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-2">
-        <createTable tableName="db_tenants_master_category">
+        <createTable tableName="db_lms_category">
             <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="db_tenants_master_categoryPK"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="db_lms_categoryPK"/>
             </column>
             <column name="description" type="TEXT"/>
             <column name="image" type="VARCHAR(255)"/>
@@ -66,9 +66,9 @@
         </createTable>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-3">
-        <createTable tableName="db_tenants_master_group">
+        <createTable tableName="db_lms_group">
             <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="db_tenants_master_groupPK"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="db_lms_groupPK"/>
             </column>
             <column name="created_by" type="VARCHAR(255)">
                 <constraints nullable="false"/>
@@ -92,9 +92,9 @@
         </createTable>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-4">
-        <createTable tableName="db_tenants_master_permission">
+        <createTable tableName="db_lms_permission">
             <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="db_tenants_master_permissionPK"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="db_lms_permissionPK"/>
             </column>
             <column name="action" type="VARCHAR(255)"/>
             <column name="description" type="VARCHAR(255)"/>
@@ -120,9 +120,9 @@
         </createTable>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-5">
-        <createTable tableName="db_tenants_master_setting">
+        <createTable tableName="db_lms_setting">
             <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="db_tenants_master_settingPK"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="db_lms_settingPK"/>
             </column>
             <column name="data_type" type="VARCHAR(255)"/>
             <column name="group_name" type="VARCHAR(255)"/>
@@ -147,7 +147,7 @@
         </createTable>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-6">
-        <createTable tableName="db_tenants_master_permission_group">
+        <createTable tableName="db_lms_permission_group">
             <column name="group_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
@@ -157,22 +157,22 @@
         </createTable>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-7">
-        <addUniqueConstraint columnNames="name" constraintName="UC_DB_ITZ_SOURCE_GROUPNAME_COL" tableName="db_tenants_master_group"/>
+        <addUniqueConstraint columnNames="name" constraintName="UC_DB_ITZ_SOURCE_GROUPNAME_COL" tableName="db_lms_group"/>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-8">
-        <addUniqueConstraint columnNames="name" constraintName="UC_DB_ITZ_SOURCE_PERMISSIONNAME_COL" tableName="db_tenants_master_permission"/>
+        <addUniqueConstraint columnNames="name" constraintName="UC_DB_ITZ_SOURCE_PERMISSIONNAME_COL" tableName="db_lms_permission"/>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-9">
-        <addUniqueConstraint columnNames="key_name" constraintName="UC_DB_ITZ_SOURCE_SETTINGKEY_NAME_COL" tableName="db_tenants_master_setting"/>
+        <addUniqueConstraint columnNames="key_name" constraintName="UC_DB_ITZ_SOURCE_SETTINGKEY_NAME_COL" tableName="db_lms_setting"/>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-10">
-        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="db_tenants_master_permission_group" constraintName="FKfhbvpxp9ww8em2jq8kckky7h3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="db_tenants_master_group" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="db_lms_permission_group" constraintName="FKfhbvpxp9ww8em2jq8kckky7h3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="db_lms_group" validate="true"/>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-11">
-        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="db_tenants_master_account" constraintName="FKkrdix3kfhedqfmtnctlxyyoos" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="db_tenants_master_group" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="db_lms_account" constraintName="FKkrdix3kfhedqfmtnctlxyyoos" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="db_lms_group" validate="true"/>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-12">
-        <addForeignKeyConstraint baseColumnNames="permission_id" baseTableName="db_tenants_master_permission_group" constraintName="FKqpwpolrgya4kaxvws20v1lylv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="db_tenants_master_permission" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="permission_id" baseTableName="db_lms_permission_group" constraintName="FKqpwpolrgya4kaxvws20v1lylv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="db_lms_permission" validate="true"/>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-13">
         <createTable tableName="oauth_access_token">
@@ -315,7 +315,7 @@
         </insert>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-21">
-        <insert tableName="db_tenants_master_group">
+        <insert tableName="db_lms_group">
             <column name="id" valueNumeric="14"/>
             <column name="name" value="ROLE ADMIN"/>
             <column name="description" value="Role for administrator"/>
@@ -327,7 +327,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2023-04-10T06:47:43"/>
         </insert>
-        <insert tableName="db_tenants_master_group">
+        <insert tableName="db_lms_group">
             <column name="id" valueNumeric="15"/>
             <column name="name" value="ROLE SUPPER ADMIN"/>
             <column name="description" value="Role for supper admin"/>
@@ -339,7 +339,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2023-09-30T04:45:04"/>
         </insert>
-        <insert tableName="db_tenants_master_group">
+        <insert tableName="db_lms_group">
             <column name="id" valueNumeric="16"/>
             <column name="name" value="ROLE MANAGER"/>
             <column name="description" value="Role for manager account"/>
@@ -351,7 +351,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2023-06-28T16:22:25"/>
         </insert>
-        <insert tableName="db_tenants_master_group">
+        <insert tableName="db_lms_group">
             <column name="id" valueNumeric="112"/>
             <column name="name" value="ROLE INTERNAL"/>
             <column name="description" value="Role for internal account"/>
@@ -365,7 +365,7 @@
         </insert>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-22">
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024257"/>
             <column name="name" value="Create account"/>
             <column name="action" value="/v1/account/create"/>
@@ -379,7 +379,7 @@
             <column name="modified_by" value="Admin"/>
             <column name="modified_date" valueDate="2020-06-24T02:14:55"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024258"/>
             <column name="name" value="Get account detail"/>
             <column name="action" value="/v1/account/get"/>
@@ -393,7 +393,7 @@
             <column name="modified_by" value="Admin"/>
             <column name="modified_date" valueDate="2020-06-24T02:19:16"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024259"/>
             <column name="name" value="Get list account"/>
             <column name="action" value="/v1/account/list"/>
@@ -407,7 +407,7 @@
             <column name="modified_by" value="Admin"/>
             <column name="modified_date" valueDate="2020-06-24T02:21:13"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024260"/>
             <column name="name" value="Delete an account"/>
             <column name="action" value="/v1/account/delete"/>
@@ -421,7 +421,7 @@
             <column name="modified_by" value="Admin"/>
             <column name="modified_date" valueDate="2020-06-24T02:21:34"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024261"/>
             <column name="name" value="Create admin account"/>
             <column name="action" value="/v1/account/create_admin"/>
@@ -435,7 +435,7 @@
             <column name="modified_by" value="Admin"/>
             <column name="modified_date" valueDate="2020-06-24T02:24:17"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024262"/>
             <column name="name" value="Update a profile admin"/>
             <column name="action" value="/v1/account/update_profile_admin"/>
@@ -449,7 +449,7 @@
             <column name="modified_by" value="Admin"/>
             <column name="modified_date" valueDate="2020-06-24T05:08:15"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024263"/>
             <column name="name" value="Update a admin account"/>
             <column name="action" value="/v1/account/update_admin"/>
@@ -463,7 +463,7 @@
             <column name="modified_by" value="Admin"/>
             <column name="modified_date" valueDate="2020-06-24T05:09:14"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024264"/>
             <column name="name" value="Create db config"/>
             <column name="action" value="/v1/db-config/create"/>
@@ -477,7 +477,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2022-09-11T14:52:26"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024265"/>
             <column name="name" value="Delete db config"/>
             <column name="action" value="/v1/db-config/delete"/>
@@ -491,7 +491,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2022-09-16T01:53:37"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024266"/>
             <column name="name" value="Upgrade db"/>
             <column name="action" value="/v1/db-config/update_tenant_db"/>
@@ -505,7 +505,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2022-09-11T14:52:03"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024267"/>
             <column name="name" value="Update db config"/>
             <column name="action" value="/v1/db-config/update"/>
@@ -519,7 +519,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2022-09-16T01:53:49"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024268"/>
             <column name="name" value="Get db config"/>
             <column name="action" value="/v1/db-config/get"/>
@@ -533,7 +533,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2022-09-11T14:52:26"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024269"/>
             <column name="name" value="Get by name"/>
             <column name="action" value="/v1/db-config/get_by_name"/>
@@ -547,7 +547,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2022-09-16T01:53:49"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024270"/>
             <column name="name" value="upload file"/>
             <column name="action" value="/v1/file/upload"/>
@@ -561,7 +561,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2022-09-21T04:34:33"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024271"/>
             <column name="name" value="Create group permission"/>
             <column name="action" value="/v1/group/create"/>
@@ -575,7 +575,7 @@
             <column name="modified_by" value="Admin"/>
             <column name="modified_date" valueDate="2020-06-24T04:57:08"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024272"/>
             <column name="name" value="Get detail group permission"/>
             <column name="action" value="/v1/group/get"/>
@@ -589,7 +589,7 @@
             <column name="modified_by" value="Admin"/>
             <column name="modified_date" valueDate="2020-06-24T04:57:34"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024273"/>
             <column name="name" value="Get list group permission"/>
             <column name="action" value="/v1/group/list"/>
@@ -603,7 +603,7 @@
             <column name="modified_by" value="Admin"/>
             <column name="modified_date" valueDate="2020-06-24T04:58:00"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024274"/>
             <column name="name" value="Update a group permission"/>
             <column name="action" value="/v1/group/update"/>
@@ -617,7 +617,7 @@
             <column name="modified_by" value="Admin"/>
             <column name="modified_date" valueDate="2020-06-24T04:58:21"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024275"/>
             <column name="name" value="List permission"/>
             <column name="action" value="/v1/permission/list"/>
@@ -631,7 +631,7 @@
             <column name="modified_by" value="Admin"/>
             <column name="modified_date" valueDate="2020-09-13T04:48:58"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024276"/>
             <column name="name" value="Create permission"/>
             <column name="action" value="/v1/permission/create"/>
@@ -645,7 +645,7 @@
             <column name="modified_by" value="Admin"/>
             <column name="modified_date" valueDate="2020-09-13T04:49:13"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024277"/>
             <column name="name" value="Update server provider"/>
             <column name="action" value="/v1/server-provider/update"/>
@@ -659,7 +659,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2023-07-17T16:07:33"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024278"/>
             <column name="name" value="Delete server provider"/>
             <column name="action" value="/v1/server-provider/delete"/>
@@ -673,7 +673,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2023-07-17T16:07:46"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024279"/>
             <column name="name" value="Get list auto complete server provider"/>
             <column name="action" value="/v1/server-provider/auto-complete"/>
@@ -687,7 +687,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2023-07-18T03:16:11"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024280"/>
             <column name="name" value="Get server provider"/>
             <column name="action" value="/v1/server-provider/get"/>
@@ -701,7 +701,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2023-07-17T16:08:29"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6778614941024281"/>
             <column name="name" value="Create server provider"/>
             <column name="action" value="/v1/server-provider/create"/>
@@ -715,7 +715,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2023-07-17T16:07:21"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6780925750345728"/>
             <column name="name" value="Create service"/>
             <column name="action" value="/v1/service/create"/>
@@ -729,7 +729,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2023-09-30T04:44:02"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6780926193893376"/>
             <column name="name" value="Update service"/>
             <column name="action" value="/v1/service/update"/>
@@ -743,7 +743,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2023-09-30T04:44:15"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6780926567284736"/>
             <column name="name" value="Delete service"/>
             <column name="action" value="/v1/service/delete"/>
@@ -757,7 +757,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2023-09-30T04:44:27"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6780927052546048"/>
             <column name="name" value="Get list service"/>
             <column name="action" value="/v1/service/list"/>
@@ -771,7 +771,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2023-09-30T04:44:41"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6780927349358592"/>
             <column name="name" value="Get service"/>
             <column name="action" value="/v1/service/get"/>
@@ -785,7 +785,7 @@
             <column name="modified_by" value="admin"/>
             <column name="modified_date" valueDate="2023-09-30T04:44:50"/>
         </insert>
-        <insert tableName="db_tenants_master_permission">
+        <insert tableName="db_lms_permission">
             <column name="id" valueNumeric="6837710895349760"/>
             <column name="name" value="Get category"/>
             <column name="action" value="/v1/category/get"/>
@@ -801,7 +801,7 @@
         </insert>
     </changeSet>
     <changeSet author="Authentication" id="1740192929334-23">
-        <insert tableName="db_tenants_master_account">
+        <insert tableName="db_lms_account">
             <column name="id" valueNumeric="2"/>
             <column name="kind" valueNumeric="1"/>
             <column name="username" value="admin"/>
@@ -823,7 +823,7 @@
             <column name="modified_date" valueDate="2023-04-16T14:52:55"/>
             <column name="phone"/>
         </insert>
-        <insert tableName="db_tenants_master_account">
+        <insert tableName="db_lms_account">
             <column name="id" valueNumeric="3"/>
             <column name="kind" valueNumeric="1"/>
             <column name="username" value="internal"/>
@@ -845,7 +845,7 @@
             <column name="modified_date" valueDate="2023-04-09T09:40:01"/>
             <column name="phone"/>
         </insert>
-        <insert tableName="db_tenants_master_account">
+        <insert tableName="db_lms_account">
             <column name="id" valueNumeric="4"/>
             <column name="kind" valueNumeric="2"/>
             <column name="username" value="manager"/>
@@ -869,139 +869,139 @@
         </insert>
     </changeSet>
     <changeSet author="Authentication" id="1744686484537-24">
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024279"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024277"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024280"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024281"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024278"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024270"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024267"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024264"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024269"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024268"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024265"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024266"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024276"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024273"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024275"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024272"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024274"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024271"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024263"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024260"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024257"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024262"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024259"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024261"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6778614941024258"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6780927349358592"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6780926193893376"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6780927052546048"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6780925750345728"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="15"/>
             <column name="permission_id" valueNumeric="6780926567284736"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="16"/>
             <column name="permission_id" valueNumeric="6778614941024279"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="16"/>
             <column name="permission_id" valueNumeric="6778614941024277"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="16"/>
             <column name="permission_id" valueNumeric="6837710895349760"/>
         </insert>
-        <insert tableName="db_tenants_master_permission_group">
+        <insert tableName="db_lms_permission_group">
             <column name="group_id" valueNumeric="112"/>
             <column name="permission_id" valueNumeric="6778614941024269"/>
         </insert>
